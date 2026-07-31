@@ -1,0 +1,24 @@
+{
+    "fecha_reporte": "2026-07-31T17:14:21.681221+00:00",
+    "total_valor_inventario": 1827.5,
+    "productos": [
+        {
+            "producto": "Monitor",
+            "precio_unitario": 200.5,
+            "stock": 5,
+            "subtotal": 1002.5
+        },
+        {
+            "producto": "Teclado",
+            "precio_unitario": 45.0,
+            "stock": 10,
+            "subtotal": 450.0
+        },
+        {
+            "producto": "Raton",
+            "precio_unitario": 25.0,
+            "stock": 15,
+            "subtotal": 375.0
+        }
+    ]
+}
