@@ -1,9 +1,9 @@
 [project]
 name = "python-aprendizaje"
 version = "0.1.0"
-description = ""
+description = "Curso de Python enfocado en Analisis de Datos"
 authors = [
-    {name = "Nestor Becerra",email = "nestor.becerra@axity.com"}
+    {name = "Nestor Becerra",email = "nestor.becerra@axity.com"}  
 ]
 requires-python = ">=3.12"
 dependencies = [
@@ -39,3 +39,7 @@ dev = [
 
 [tool.isort]
 profile = "black"
+
+# AGREGAMOS ESTE BLOQUE AL FINAL PARA LAS REGLAS INTERNAS DE POETRY
+[tool.poetry]
+packages = [{include = "Modulos"}]

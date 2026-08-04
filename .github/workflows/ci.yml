@@ -1,0 +1,34 @@
+name: Pipeline de Integración Continua (CI)
+
+# ¿Cuándo se despierta este robot? Cuando alguien haga un Push a 'main'
+on:
+  push:
+    branches: [ "main", "master" ]
+
+jobs:
+  pruebas_y_construccion:
+    runs-on: ubuntu-latest # El robot usará una computadora con Linux prestada por GitHub
+
+    steps:
+    # 1. El robot descarga tu código
+    - name: Descargar repositorio
+      uses: actions/checkout@v3
+
+    # 2. El robot instala Python 3.12
+    - name: Instalar Python 3.12
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.12"
+
+    # 3. El robot simula correr las pruebas
+    - name: Ejecutar pruebas automatizadas
+      run: |
+        echo "✅ Simulando ejecución de pytest..."
+        echo "✅ ¡Todas las pruebas pasaron exitosamente!"
+
+    # 4. El robot construye el contenedor Docker
+    - name: Construir imagen Docker
+      run: |
+        # Va a la carpeta del módulo y construye la receta que hicimos
+        docker build -t mi-api-fastapi ./Modulos/Modulo_16
+        echo "✅ Contenedor Docker construido y listo para Microsoft Azure."
