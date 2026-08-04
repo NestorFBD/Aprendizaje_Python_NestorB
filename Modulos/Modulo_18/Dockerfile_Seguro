@@ -1,0 +1,17 @@
+FROM python:3.12-slim
+
+# 1. Creamos un grupo y un usuario que NO sean el administrador root
+RUN addgroup --system appgroup && adduser --system --group appuser
+
+WORKDIR /app
+
+COPY . /app
+
+# 2. Le damos permiso a nuestro nuevo usuario débil solo sobre esta carpeta
+RUN chown -R appuser:appgroup /app
+
+# 3. CAMBIO DE IDENTIDAD: A partir de aquí, el contenedor deja de ser Administrador
+USER appuser
+
+# 4. Ejecutamos el programa (si un hacker entra, estará atrapado sin permisos)
+CMD ["python", "laboratorio_mod18.py"]
