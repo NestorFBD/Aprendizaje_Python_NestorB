@@ -7,7 +7,7 @@ FROM python:3.12-slim as builder
 WORKDIR /app
 
 # Instalamos Poetry temporalmente
-RUN pip install poetry
+RUN pip install poetry poetry-plugin-export
 
 # Copiamos nuestros archivos de dependencias
 COPY pyproject.toml poetry.lock ./
