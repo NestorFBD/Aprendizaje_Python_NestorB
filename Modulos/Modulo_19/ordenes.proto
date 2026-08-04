@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package ordenes;
+
+// 1. El Servicio (Las funciones disponibles)
+service GestorOrdenes {
+  rpc CrearOrden (OrdenRequest) returns (OrdenResponse) {}
+}
+
+// 2. El DTO de Entrada (Lo que pedimos)
+message OrdenRequest {
+  string producto = 1;
+  float monto = 2;
+}
+
+// 3. El DTO de Salida (Lo que respondemos)
+message OrdenResponse {
+  string id = 1;
+  string mensaje = 2;
+}
