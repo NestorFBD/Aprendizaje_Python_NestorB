@@ -1,0 +1,41 @@
+name: CI Proyecto Final (Calidad y Seguridad)
+
+on:
+  push:
+    branches: [ "main", "master" ]
+
+jobs:
+  auditoria_pruebas_y_docker:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 1. Descargar código
+      uses: actions/checkout@v3
+
+    - name: 2. Instalar Python 3.12
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.12"
+
+    - name: 3. Preparar Entorno (Poetry)
+      run: |
+        pip install poetry
+        poetry install
+
+    - name: 4. Auditoría de Seguridad (pip-audit)
+      run: |
+        echo "🔍 Buscando vulnerabilidades en las librerías..."
+        poetry run pip-audit
+
+    - name: 5. Pruebas Unitarias y E2E (Pytest)
+      run: |
+        echo "🧪 Corriendo pruebas de la Arquitectura Hexagonal..."
+        cd Proyecto_Final
+        poetry run pytest
+
+    - name: 6. Construcción Docker Multistage
+      run: |
+        echo "🐳 Empaquetando el proyecto en un contenedor..."
+        # Le pasamos el contexto de la raíz (.) para que encuentre el pyproject.toml
+        docker build -t api-proyecto-final -f Proyecto_Final/Dockerfile .
+        echo "✅ ¡Contenedor listo para Despliegue!"
