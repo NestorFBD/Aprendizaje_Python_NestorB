@@ -3,6 +3,7 @@ name: CI Proyecto Final (Calidad y Seguridad)
 on:
   push:
     branches: [ "main", "master" ]
+  workflow_dispatch:  # <--- ¡Este es el botón manual de Play!
 
 jobs:
   auditoria_pruebas_y_docker:
